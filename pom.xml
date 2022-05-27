@@ -13,6 +13,9 @@
 
     <modules>
         <module>product</module>
+        <module>clients</module>
+        <module>erueka-server</module>
+        <module>apigw</module>
     </modules>
 
     <url>https://www.basmaOnline.com</url>
