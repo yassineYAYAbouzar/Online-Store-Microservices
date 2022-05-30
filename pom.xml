@@ -16,6 +16,9 @@
         <module>clients</module>
         <module>erueka-server</module>
         <module>apigw</module>
+        <module>order-service</module>
+        <module>authorization</module>
+        <module>order-service</module>
     </modules>
 
     <url>https://www.basmaOnline.com</url>
@@ -46,10 +49,25 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+                <dependency>
+                    <groupId>org.keycloak.bom</groupId>
+                    <artifactId>keycloak-adapter-bom</artifactId>
+                    <version>16.1.0</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -62,6 +80,8 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+
+
     </dependencies>
 
     <build>
