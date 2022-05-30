@@ -14,20 +14,21 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@RequestMapping("/categorie")
 public class CategorieController {
     private final CategoryServiceImp categoryServiceImp;
-    @GetMapping("")
+    @GetMapping("/allCategories")
     public List<Categorie> getAllCategories(){
         List<Categorie> categorieList =categoryServiceImp.getAllCategories();
         return categorieList;
     }
-    @PostMapping("")
+    @PostMapping("/admin")
     public ResponseEntity<Categorie> createUser(@RequestBody @Valid Categorie categorie) throws Exception {
         categoryServiceImp.createCategorie(categorie);
         return new ResponseEntity<Categorie>( categorie , HttpStatus.CREATED) ;
     }
 
-    @PatchMapping(path = "/{categoryId}")
+    @PatchMapping(path = "/admin/{categoryId}")
     public ResponseEntity<?> updateCategorie(@PathVariable String categoryId , @RequestBody Categorie categorie) throws Exception{
         categoryServiceImp.updateCategorie(categorie);
         Optional<Categorie> oneCategorie = categoryServiceImp.getOneCategorie(categoryId);
@@ -38,7 +39,7 @@ public class CategorieController {
         return ResponseEntity.badRequest().body(new NotCategory("not category Yeat !") );
 
     }
-    @DeleteMapping(path = "/{categoryId}")
+    @DeleteMapping(path = "/admin/{categoryId}")
     public ResponseEntity<?> deleteCategorie(@PathVariable String categoryId ) {
         Optional<Categorie> oneCategorie = categoryServiceImp.getOneCategorie(categoryId);
         if(oneCategorie.isPresent()){
@@ -48,7 +49,7 @@ public class CategorieController {
         return ResponseEntity.badRequest().body(new NotCategory("not category Yeat !") );
     }
 
-    @GetMapping(path = "/{categoryId}")
+    @GetMapping(path = "/oneCategorie/{categoryId}")
     public ResponseEntity<?> getResponsable(@PathVariable String categoryId )  {
         Optional<Categorie> oneCategorie = categoryServiceImp.getOneCategorie(categoryId);
         if(oneCategorie.isPresent()){

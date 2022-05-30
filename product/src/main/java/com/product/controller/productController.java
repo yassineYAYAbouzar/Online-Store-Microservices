@@ -10,10 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -21,7 +19,7 @@ import java.util.stream.Collectors;
 public class productController {
     final ProductServiceImp productServiceImp;
     final CategoryService categoryService;
-    @GetMapping("")
+    @GetMapping("/allProduct")
     public List<Product> getAllProduct(){
         List<Product> products =productServiceImp.getAllProduct();
         products.forEach(product -> {
@@ -30,7 +28,7 @@ public class productController {
         });
         return products;
     }
-    @PostMapping("")
+    @PostMapping("/admin")
     public ResponseEntity<?> createProduct(@RequestBody Product product) throws Exception {
         Optional<Categorie> oneCategorieByName = categoryService.getOneCategorieByName(product.getCategorieName());
 
@@ -44,7 +42,7 @@ public class productController {
 
     }
 
-    @PatchMapping(path = "/{productId}")
+    @PatchMapping(path = "/admin/{productId}")
     public ResponseEntity<?> updateProduct(@PathVariable String productId , @RequestBody Product product) throws Exception{
         productServiceImp.updateProduct(product);
         Optional<Product> oneProduct = productServiceImp.getOneProduct(productId);
@@ -55,7 +53,7 @@ public class productController {
         return ResponseEntity.badRequest().body(new NoProduct("not product Yeat !") );
 
     }
-    @DeleteMapping(path = "/{productId}")
+    @DeleteMapping(path = "/admin/{productId}")
     public ResponseEntity<?> deleteProduct(@PathVariable String productId ) {
         Optional<Product> oneProduct = productServiceImp.getOneProduct(productId);
         if(oneProduct.isPresent()){
@@ -65,7 +63,7 @@ public class productController {
         return ResponseEntity.badRequest().body(new NoProduct("not product Yeat !") );
     }
 
-    @GetMapping(path = "/{productId}")
+    @GetMapping(path = "/oneProduct/{productId}")
     public ResponseEntity<?> getProduct(@PathVariable String productId )  {
         Optional<Product> oneProduct = productServiceImp.getOneProduct(productId);
         if(oneProduct.isPresent()){
