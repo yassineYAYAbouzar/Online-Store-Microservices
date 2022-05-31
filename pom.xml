@@ -16,6 +16,7 @@
         <module>clients</module>
         <module>erueka-server</module>
         <module>order-service</module>
+        <module>gwpi</module>
     </modules>
 
     <url>https://www.basmaOnline.com</url>

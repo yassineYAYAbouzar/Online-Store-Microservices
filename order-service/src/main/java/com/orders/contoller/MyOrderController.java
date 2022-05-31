@@ -29,7 +29,7 @@ public class MyOrderController {
         return new ResponseEntity<OrderEntitie>(orderEntitie, HttpStatus.CREATED) ;
     }
     public ResponseEntity<?> serviceAFallback(Exception e) {
-        return  ResponseEntity.badRequest().body("no product yeat !") ;
+        return  ResponseEntity.badRequest().body(new NoOrder("no product yeat !")) ;
     }
 
     @DeleteMapping(path = "/user/deleteOrder/{orderId}")
