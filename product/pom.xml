@@ -53,6 +53,7 @@
             <groupId>com.online.store</groupId>
             <artifactId>clients</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.modelmapper</groupId>

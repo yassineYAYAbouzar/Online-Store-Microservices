@@ -21,8 +21,11 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public Optional<Product> getOneProduct(String ProductId) {
-        return Optional.ofNullable(productRepositorie
-                .findByUuid(UUID.fromString(ProductId)));
+
+        Product byUuid = productRepositorie
+                .findByUuid(UUID.fromString(ProductId));
+        byUuid.setCategorie(null);
+        return Optional.ofNullable(byUuid);
     }
 
     @Override

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 @Getter
@@ -20,6 +21,11 @@ public class OrderEntitie {
     private Long id;
     private UUID uuid;
     private UUID userId;
-    private UUID productId;
-    private Date dateComande;
+    private String productId;
+    private String bayer;
+    private String productName;
+    private Float prix;
+    private LocalDate dateComande;
+
+
 }

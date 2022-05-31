@@ -15,9 +15,6 @@
         <module>product</module>
         <module>clients</module>
         <module>erueka-server</module>
-        <module>apigw</module>
-        <module>order-service</module>
-        <module>authorization</module>
         <module>order-service</module>
     </modules>
 
@@ -60,14 +57,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-spring-boot-starter</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

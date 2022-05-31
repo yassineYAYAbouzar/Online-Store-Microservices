@@ -1,8 +1,7 @@
-package com.product.entities;
+package com.client.product;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.UUID;
 
 @Getter
@@ -11,22 +10,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private UUID uuid;
     private String name ;
     private String description;
     private String image ;
     private Float prix ;
-    @Transient
     private String categorieName;
-
-    @ManyToOne
-    @JoinColumn(name = "categorie_id")
-    private Categorie categorie;
 
 
 }
