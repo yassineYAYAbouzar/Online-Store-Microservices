@@ -3,6 +3,7 @@ package com.orders.contoller;
 
 import com.orders.entities.OrderEntitie;
 import com.orders.service.OrderService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,16 @@ public class MyOrderController {
         List<OrderEntitie> orderEntities =orderService.getAllOrder();
         return orderEntities;
     }
+    @CircuitBreaker(name = "one" , fallbackMethod = "serviceAFallback")
     @PostMapping("/user/createOrder")
-    public ResponseEntity<OrderEntitie> createOrder(@RequestBody @Valid OrderEntitie orderEntitie) throws Exception {
+    public ResponseEntity<?> createOrder(@RequestBody @Valid OrderEntitie orderEntitie) throws Exception {
         orderService.createOrder(orderEntitie);
         return new ResponseEntity<OrderEntitie>(orderEntitie, HttpStatus.CREATED) ;
     }
+    public ResponseEntity<?> serviceAFallback(Exception e) {
+        return  ResponseEntity.badRequest().body("no product yeat !") ;
+    }
+
     @DeleteMapping(path = "/user/deleteOrder/{orderId}")
     public ResponseEntity<?> deleteOrder(@PathVariable String orderId ) {
         Optional<OrderEntitie> oneOrder = orderService.getOneOrder(orderId);

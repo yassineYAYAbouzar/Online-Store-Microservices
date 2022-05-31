@@ -20,9 +20,8 @@ public class OrderEntitie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private UUID uuid;
-    private UUID userId;
+    private String bayerId;
     private String productId;
-    private String bayer;
     private String productName;
     private Float prix;
     private LocalDate dateComande;

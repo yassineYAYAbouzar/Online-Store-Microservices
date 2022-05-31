@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @AllArgsConstructor
 @RestController
@@ -43,7 +44,7 @@ public class productController {
     }
 
     @PatchMapping(path = "/admin/{productId}")
-    public ResponseEntity<?> updateProduct(@PathVariable String productId , @RequestBody Product product) throws Exception{
+    public ResponseEntity<?> updateProduct(@PathVariable UUID productId , @RequestBody Product product) throws Exception{
         productServiceImp.updateProduct(product);
         Optional<Product> oneProduct = productServiceImp.getOneProduct(productId);
         if(oneProduct.isPresent()){
@@ -54,7 +55,7 @@ public class productController {
 
     }
     @DeleteMapping(path = "/admin/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable String productId ) {
+    public ResponseEntity<?> deleteProduct(@PathVariable UUID productId ) {
         Optional<Product> oneProduct = productServiceImp.getOneProduct(productId);
         if(oneProduct.isPresent()){
             productServiceImp.deleteProduct(oneProduct.get());
@@ -64,7 +65,7 @@ public class productController {
     }
 
     @GetMapping(path = "/oneProduct/{productId}")
-    public ResponseEntity<?> getProduct(@PathVariable String productId )  {
+    public ResponseEntity<?> getProduct(@PathVariable UUID productId )  {
         Optional<Product> oneProduct = productServiceImp.getOneProduct(productId);
         if(oneProduct.isPresent()){
             return  new ResponseEntity<Product>( oneProduct.get() , HttpStatus.OK) ;
